@@ -1,12 +1,12 @@
-# Training a NLP Model in Swift
+# 👨🏻‍💻 Training a NLP Model in Swift
 
 A script that trains a natural language processing, machine learning model in Swift. 
 
-Technologies:
+### 🤖 Technologies:
 - ```CreateML```
 - An open source dataset I found online, that has a set of first-person sentences, labelled with the emotion
 
-## Overview
+## 👀 Overview
 
 ### Parsing Options
 
@@ -22,7 +22,7 @@ parsingOptions.lineTerminator = "\n" // my rows were separated by new lines
 var data = try MLDataTable(contentsOf: csv, options: parsingOptions) // using the parsing options
 ```
 
-### Fixing incorrect data types
+### 🛠 Fixing incorrect data types
 
 The ```MLTextClassifier``` is a multiclass classifier, and uses ```String``` for the label, rather than ```Int```. My csv used had numbers for the labels, and these were automatically interpreted as ```Int```. There may be a way to specify the type explicitly, but I created a new column and replaced my old one with it:
 
@@ -51,7 +51,7 @@ data.removeColumn(named: labelColumnName)
 data.addColumn(stringLabelColumn, named: stringLabelColumnName)
 ```
 
-### Evaluating our model
+### 📊 Evaluating our model
 
 In my code I print the training accuracy, validation accuracy and evaluation accuracy. This was so I could see how my model performs, and with my seed I got the values:
 
@@ -63,6 +63,6 @@ Evaluation Accuracy: 88.04321139209428
 
 so about 88% accuracy when I evaluated with an unseen test dataset (made with ```MLDataTable.randomSplit()```.
 
-### Using the model
+### ✏️ Using the model
 
 I then saved my model to disk using ```MLTextClassifier.write()```. This model can now be used in other Swift projects.
